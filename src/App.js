@@ -18,7 +18,7 @@ function App() {
     const fetch = async () => {
       const initial = await axios.get(URL); // first request contains count of all pokemon
       // const _list = await axios.get(URL + `?limit=${initial.data.count}`);
-      const _list = await axios.get(URL + `?limit=30`);
+      const _list = await axios.get(URL + `?limit=40`);
       const _pokemon = await Promise.all(
         _list.data.results.map(async (pokemon) => {
           const result = await axios.get(pokemon.url);

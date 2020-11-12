@@ -1,31 +1,31 @@
-$card-size: 12em;
+$card-size: 12rem;
 
 .card-item {
   float: left;
   width: $card-size;
   height: $card-size;
-  margin-bottom: 1em;
+  margin-bottom: 1rem;
+  transition: all .5s ease-in;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, .25);
 
   div.card-body {
+    padding: .5rem;
     div.card-title {
       font-weight: bold;
       text-align: center;
-      transition:all .9s ease; 
     }
   }
   img {
     margin: 0 auto;
     width: $card-size * 2 / 3;
-    height: $card-size * 2 / 3;
-    transition:all .9s ease; 
+    max-height: $card-size * 2 / 3;
+    transition: all .5s ease;
   }
 
   &:hover {
-    background: #fff;
-    box-shadow: 0px 15px 26px rgba(0, 0, 0, 0.50);
-    transition: all 0.2s ease-in;
-    img, div.card-body div.card-title {
-      transform:scale(1.15);
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, .5);
+    img {
+      transform: scale(1.15);
     }
   }
 }
