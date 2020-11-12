@@ -5,8 +5,6 @@ import Card from "../Card";
 import Spinner from "../Spinner";
 
 function CardGrid({ isLoading, items, query }) {
-  const handleClick = (e) => {};
-
   return isLoading ? (
     <Spinner />
   ) : (
