@@ -7,12 +7,16 @@ $card-size: 12rem;
   margin-bottom: 1rem;
   transition: all .5s ease-in;
   box-shadow: 0px 3px 5px rgba(0, 0, 0, .25);
+  color: black;
 
   div.card-body {
     padding: .5rem;
     div.card-title {
       font-weight: bold;
       text-align: center;
+    }
+    div.card-subtitle {
+      color: gray;
     }
   }
   img {

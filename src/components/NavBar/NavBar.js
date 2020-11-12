@@ -1,11 +1,10 @@
 import React from "react";
 import { Navbar, Nav, Form, FormControl } from "react-bootstrap";
 import logo from "../../img/logo.svg";
-// import Button from "react-bootstrap/Button";
 
 import "./NavBar.scss";
 
-function NavBar() {
+function NavBar({ onQueryChange }) {
   return (
     <Navbar expand="lg">
       <Navbar.Brand href="/">
@@ -25,7 +24,12 @@ function NavBar() {
           <Nav.Link href="/types">Types</Nav.Link>
         </Nav>
         <Form inline>
-          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+          <FormControl
+            type="text"
+            placeholder="Search"
+            className="mr-sm-2"
+            onChange={(e) => onQueryChange(e.target.value)}
+          />
           {/* <Button variant="outline-success">Search</Button> */}
         </Form>
       </Navbar.Collapse>
