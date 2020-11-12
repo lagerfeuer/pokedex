@@ -1,5 +1,7 @@
+@import '../../style/colors';
+
 nav.navbar {
-  background-color: rgb(227,53,13);
+  background-color: $main;
   a.navbar-brand {
     color: white;
     font-weight: bold;

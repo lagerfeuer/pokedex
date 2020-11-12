@@ -1,0 +1,40 @@
+@import '../../style/colors';
+@use 'sass:math';
+
+$dot-size: 32px;
+$half-size: $dot-size / 2;
+$qsize: $dot-size / 4;
+
+.lds-grid {
+  position: relative;
+  width: 3 * $dot-size;
+  height: 3 * $dot-size;
+  margin: 0 auto;
+}
+
+.lds-grid div {
+  position: absolute;
+  width: $dot-size;
+  height: $dot-size;
+  border-radius: 50%;
+  background: $main;
+  animation: lds-grid 1.2s linear infinite;
+}
+
+@for $counter from 0 through 8 {
+  .lds-grid div:nth-child(#{$counter + 1}) {
+    top: $half-size + ($counter % 3) * ($dot-size + $qsize);
+    left: $half-size + floor($counter / 3) * ($dot-size + $qsize);
+    animation-delay: (($counter % 3) + floor($counter / 3)) * -0.4s;
+  }
+}
+
+@keyframes lds-grid {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
