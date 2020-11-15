@@ -12,3 +12,7 @@ export function gender(name) {
   if (name.endsWith("-f")) return <FontAwesomeIcon icon={faVenus} />;
   return null;
 }
+
+export function findLanguage(languages, lang="en") {
+  for (const l of languages) if (l.language.name === lang) return l;
+}

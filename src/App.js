@@ -5,11 +5,10 @@ import {
   Route,
   useParams,
 } from "react-router-dom";
-import axios from "axios";
-import { PokemonURL } from "./config";
 import NavBar from "./components/NavBar";
 import CardGrid from "./components/CardGrid";
 import Pokemon from "./components/Pokemon";
+import { fetchAllPokemon } from "./utils/fetch";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.scss";
@@ -19,25 +18,24 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState("");
 
-  useEffect(() => {
-    const fetch = async () => {
-      console.log(PokemonURL);
-      const initial = await axios.get(PokemonURL); // first request contains count of all pokemon
-      const _list = await axios.get(
-        PokemonURL + `?limit=${initial.data.count}`
-      );
-      // const _list = await axios.get(PokemonURL + `?limit=40`);
-      const _pokemon = await Promise.all(
-        _list.data.results.map(async (pokemon) => {
-          const result = await axios.get(pokemon.url);
-          return result.data;
-        })
-      );
-      setPokemon(_pokemon);
-      setLoading(false);
-    };
-    fetch();
-  }, []);
+  useEffect(
+    (query) => {
+      let unmounted = false;
+
+      const _fetch = async (query) => {
+        const _pokemon = await fetchAllPokemon(query);
+        setPokemon(_pokemon.filter((e) => e !== null));
+        setLoading(false);
+      };
+
+      if (!unmounted) _fetch();
+
+      return () => {
+        unmounted = true;
+      };
+    },
+    [query]
+  );
 
   function PokemonWrapper() {
     const { id } = useParams();
@@ -53,7 +51,7 @@ function App() {
             <CardGrid isLoading={loading} items={pokemon} query={query} />
           </Route>
           <Route path="/:id">
-            <PokemonWrapper/>
+            <PokemonWrapper />
           </Route>
         </Switch>
       </div>
