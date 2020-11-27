@@ -43,7 +43,7 @@ function App() {
   }
 
   return (
-    <Router>
+    <Router basename='pokedex'>
       <div className="App">
         <NavBar onQueryChange={setQuery} />
         <Switch>
